@@ -28,11 +28,12 @@ public class HomeController {
     public static String apiGetShowingMovies = Api.baseURL+"/api/movies/showing";
 
     public static String API_GET_SHOWING_MOVIES_BY_NAME = Api.baseURL+"/api/movies/showing/search";
-
-    @GetMapping
+    //mới thêm
+    @GetMapping("/")
     public String displayHomePage(Model model){
         ResponseEntity<MovieDTO[]> response = restTemplate.getForEntity(apiGetShowingMovies,MovieDTO[].class);
         MovieDTO[] movies = response.getBody();
+//        System.out.println("Movies retrieved: " + (movies != null ? movies.length : "null"));
         model.addAttribute("movies",movies);
         model.addAttribute("user",new User());
         return "home";
